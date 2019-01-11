@@ -1,17 +1,32 @@
-// Factory Functions -------------------------
-function createCircle(radius) {
-  return {
-    radius,
-    draw: function() {
-      console.log('Draw');
-    }
-  };
-}
+// Step 1 -----------------------------------
+// function Circle(radius) {
+//   this.radius = radius;
+//   this.draw = function() {
+//     console.log('Draw!');
+//   };
+// }
 
-const circle = createCircle(1);
-// ------------------------------------------
+// const Circle1 = new Function(
+//   'radius',
+//   ` this.radius = radius;
+//     this.draw = function() {
+//       console.log('Draw!');
+//     }
+// `
+// );
 
-// Constructor Functions --------------------
+// const circle = new Circle1(1);
+// // output
+// // circle
+// // {radius: 1, draw: ƒ}
+// // draw: ƒ ()
+// // radius: 1
+// // __proto__: Object
+
+// const another = new Circle(1);
+// --------------------------------------------------
+
+// Step 2 -------------------------------------------
 function Circle(radius) {
   this.radius = radius;
   this.draw = function() {
@@ -19,11 +34,7 @@ function Circle(radius) {
   };
 }
 
+Circle.call({}, 1);
+Circle.apply({}, [1, 2, 3]);
+
 const another = new Circle(1);
-// write in console: Circle // output
-// ƒ Circle(radius) {
-//     this.radius = radius;
-//     this.draw = function() {
-//       console.log('Draw!');
-//     };
-//   }
