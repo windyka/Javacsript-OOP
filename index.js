@@ -1,25 +1,33 @@
-// Abstraction in Javascript are Hide the detail -
-// and only expose the essential:
-
-// With Private Proprties and Method:
-
-// Example;
+// 12- Getters and Setters
 function Circle(radius) {
   this.radius = radius;
 
   let defaultLocation = { x: 0, y: 0 };
 
-  let computeOptimumLocation = function(factor) {};
+  this.getDefaultLocation = function() {
+    return defaultLocation;
+  };
 
   this.draw = function() {
-    computeOptimumLocation(0.1);
-    // defaultLocation
-    // this.radius
-
     console.log('draw'); // output => draw
   };
+
+  Object.defineProperty(this, 'defaultLocation', {
+    get: function() {
+      return defaultLocation;
+    },
+    set: function(value) {
+      if (!value.x || !value.y) throw new Error('Invalid location');
+
+      defaultLocation = value;
+    }
+  });
 }
 
 const circle = new Circle(10);
-circle.radius;
+circle.defaultLocation = 1;
 circle.draw();
+// output
+// Uncaught Error: Invalid location
+// at Circle.set (index.js:25)
+// at index.js:33
