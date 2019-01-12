@@ -1,36 +1,38 @@
-// Difference Primitives and References Types
+// Adding or Removing Properties
 
-// Primitives Example; --------------------
-// const numbers = 10;
-
-// function increase(numbers) {
-//   numbers++;
-// }
-
-// increase(numbers);
-// console.log(numbers); // output => 10
-// ----------------------------------------
-
-// Reference Example; ---------------------
-const numbers = { value: 10 };
-
-function increase(numbers) {
-  numbers.value++;
+function Circle(radius) {
+  this.radius = radius;
+  this.draw = function() {
+    console.log('draw');
+  };
 }
 
-increase(numbers);
-console.log(numbers); // output => {value: 11}
-// -----------------------------------------||
-//     PRIMITIVES VS REFERENCE              ||
-// -----------------------------------------||
-// Value Types;   ||    // Reference Types; ||
-// String         ||    // Object           ||
-// Number         ||    // Function         ||
-// Boolean        ||    // Array            ||
-// Symbol         ||                        ||
-// Undefined      ||                        ||
-// Null           ||                        ||
-// -----------------------------------------||
+const circle = new Circle(10);
 
-// **** PRIMITIVES ARE COPIED BY THEIR VALUE **** //
-// **** OBJECT IS COPIED BY THEIR REFERENCE **** //
+const propertyName = 'location';
+const propertyColor = 'background-color';
+
+circle[propertyName] = { x: 1 };
+circle[propertyColor] = { color1: 'yellow' };
+// write in console: circle
+// output
+// circle
+// Circle {radius: 10, draw: ƒ, location: {…}, background-color: {…}}
+// background-color: {color1: "yellow"}
+// draw: ƒ ()
+// location: {x: 1}
+// radius: 10
+// __proto__: Object
+
+// if we want to Delete a property of an object,
+// we can using delete.prop
+// Example:
+delete circle.location;
+// write in console: circle
+// output
+// circle
+// Circle {radius: 10, draw: ƒ, background-color: {…}}
+// background-color: {color1: "yellow"}
+// draw: ƒ ()
+// radius: 10
+// __proto__: Object
