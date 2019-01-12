@@ -1,5 +1,6 @@
-// Adding or Removing Properties
+// Iterate or Enumerating Properties
 
+// Step 1 --------------------------
 function Circle(radius) {
   this.radius = radius;
   this.draw = function() {
@@ -9,30 +10,40 @@ function Circle(radius) {
 
 const circle = new Circle(10);
 
-const propertyName = 'location';
-const propertyColor = 'background-color';
-
-circle[propertyName] = { x: 1 };
-circle[propertyColor] = { color1: 'yellow' };
-// write in console: circle
+// for (let key in circle) {
+//   console.log(key);
+// }
 // output
-// circle
-// Circle {radius: 10, draw: ƒ, location: {…}, background-color: {…}}
-// background-color: {color1: "yellow"}
-// draw: ƒ ()
-// location: {x: 1}
-// radius: 10
-// __proto__: Object
+// radius         // index.js:14
+// draw           // index.js:14
+// ----------------------------------
 
-// if we want to Delete a property of an object,
-// we can using delete.prop
-// Example:
-delete circle.location;
-// write in console: circle
+// Step 2 ---------------------------
+// for (let key in circle) {
+//   console.log(key, circle[key]);
+// }
 // output
-// circle
-// Circle {radius: 10, draw: ƒ, background-color: {…}}
-// background-color: {color1: "yellow"}
-// draw: ƒ ()
-// radius: 10
-// __proto__: Object
+// radius 10
+// index.js:23 draw ƒ () {
+//   console.log('draw');
+// }
+// ----------------------------------
+
+// Step 3 ---------------------------
+for (let key in circle) {
+  if (typeof circle[key] !== 'function') console.log(key, circle[key]);
+}
+// output
+// radius 10          // index.js:34
+// ----------------------------------
+const keys = Object.keys(circle);
+console.log(keys);
+// output
+// (2) ["radius", "draw"]
+// 0: "radius"
+// 1: "draw"
+// length: 2
+// __proto__: Array(0)
+if ('radius' in circle) console.log('Circle has a radius');
+// output
+// Circle has a radius
