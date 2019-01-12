@@ -1,40 +1,36 @@
-// Step 1 -----------------------------------
-// function Circle(radius) {
-//   this.radius = radius;
-//   this.draw = function() {
-//     console.log('Draw!');
-//   };
+// Difference Primitives and References Types
+
+// Primitives Example; --------------------
+// const numbers = 10;
+
+// function increase(numbers) {
+//   numbers++;
 // }
 
-// const Circle1 = new Function(
-//   'radius',
-//   ` this.radius = radius;
-//     this.draw = function() {
-//       console.log('Draw!');
-//     }
-// `
-// );
+// increase(numbers);
+// console.log(numbers); // output => 10
+// ----------------------------------------
 
-// const circle = new Circle1(1);
-// // output
-// // circle
-// // {radius: 1, draw: ƒ}
-// // draw: ƒ ()
-// // radius: 1
-// // __proto__: Object
+// Reference Example; ---------------------
+const numbers = { value: 10 };
 
-// const another = new Circle(1);
-// --------------------------------------------------
-
-// Step 2 -------------------------------------------
-function Circle(radius) {
-  this.radius = radius;
-  this.draw = function() {
-    console.log('Draw!');
-  };
+function increase(numbers) {
+  numbers.value++;
 }
 
-Circle.call({}, 1);
-Circle.apply({}, [1, 2, 3]);
+increase(numbers);
+console.log(numbers); // output => {value: 11}
+// -----------------------------------------||
+//     PRIMITIVES VS REFERENCE              ||
+// -----------------------------------------||
+// Value Types;   ||    // Reference Types; ||
+// String         ||    // Object           ||
+// Number         ||    // Function         ||
+// Boolean        ||    // Array            ||
+// Symbol         ||                        ||
+// Undefined      ||                        ||
+// Null           ||                        ||
+// -----------------------------------------||
 
-const another = new Circle(1);
+// **** PRIMITIVES ARE COPIED BY THEIR VALUE **** //
+// **** OBJECT IS COPIED BY THEIR REFERENCE **** //
