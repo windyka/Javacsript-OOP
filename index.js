@@ -1,48 +1,43 @@
-// 14-15 Exercise- Stopwatch
+let x = {};
 
-function Stopwatch() {
-  let startTime,
-    endTime,
-    running,
-    duration = 0;
+console.log(x);
+// output
+// {}
+// __proto__:
+// constructor: ƒ Object()
+// hasOwnProperty: ƒ hasOwnProperty()
+// isPrototypeOf: ƒ isPrototypeOf()
+// propertyIsEnumerable: ƒ propertyIsEnumerable()
+// toLocaleString: ƒ toLocaleString()
+// toString: ƒ toString()
+// valueOf: ƒ valueOf()
+// __defineGetter__: ƒ __defineGetter__()
+// __defineSetter__: ƒ __defineSetter__()
+// __lookupGetter__: ƒ __lookupGetter__()
+// __lookupSetter__: ƒ __lookupSetter__()
+// get __proto__: ƒ __proto__()
+// set __proto__: ƒ __proto__()
 
-  this.start = function() {
-    if (running) throw new Error('Stopwatch has already started');
+console.log(Object.getPrototypeOf(x));
+// output
+// {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
+// constructor: ƒ Object()
+// hasOwnProperty: ƒ hasOwnProperty()
+// isPrototypeOf: ƒ isPrototypeOf()
+// propertyIsEnumerable: ƒ propertyIsEnumerable()
+// toLocaleString: ƒ toLocaleString()
+// toString: ƒ toString()
+// valueOf: ƒ valueOf()
+// __defineGetter__: ƒ __defineGetter__()
+// __defineSetter__: ƒ __defineSetter__()
+// __lookupGetter__: ƒ __lookupGetter__()
+// __lookupSetter__: ƒ __lookupSetter__()
+// get __proto__: ƒ __proto__()
+// set __proto__: ƒ __proto__()
 
-    running = true;
+console.log(x.toString());
+// output
+// [object Object]
 
-    startTime = new Date();
-  };
-
-  this.stop = function() {
-    if (!running) throw new Error('Stopwatch is not started');
-
-    running = false;
-
-    endTime = new Date();
-
-    const seconds = (endTime.getTime() - startTime.getTime()) / 1000;
-    duration += seconds;
-  };
-
-  this.reset = function() {
-    startTime = null;
-    endTime = null;
-    running = false;
-    duration = 0;
-  };
-
-  Object.defineProperty(this, 'duration', {
-    get: function() {
-      return duration;
-    },
-    set: function(value) {
-      duration = value;
-    }
-  });
-}
-
-const sw = new Stopwatch();
-sw.start();
-sw.stop();
-sw.reset();
+// A Prototype are just regular object
+// Every object has prototype or a parent, except the Root Object
