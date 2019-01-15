@@ -1,26 +1,31 @@
-// Object.getPrototypeOf(myObj);
-
-// myObj.__proto__(parent of myObj)
-// same as
-// Constructor.prototype()
-
 function Circle(radius) {
   this.radius = radius;
+
+  this.move = function() {
+    this.draw();
+    console.log('move');
+  };
 }
 
-Circle.prototype;
+Circle.prototype.draw = function() {
+  console.log('draw');
+};
 
-const circle = new Circle(1);
+const c1 = new Circle(1);
+const c2 = new Circle(1);
 
-// write in the console:
-// -----------------------------
-// circle
-// Circle {radius: 1}
-// radius: 1
-// __proto__: Object
-// -----------------------------
-// Circle.prototype
-// {constructor: ƒ}
-// constructor: ƒ Circle(radius)
-// __proto__: Object
-// -----------------------------
+Circle.prototype.toString = function() {
+  return 'Circle with radius = ' + this.radius;
+};
+// call method 1 ------------------------
+// write in the console;
+// c1.toString()
+// "Circle with radius = 1"
+// --------------------------------------
+
+// call method 2 ------------------------
+// write in the console;
+// c1.move()
+//     draw
+//     move
+// --------------------------------------
