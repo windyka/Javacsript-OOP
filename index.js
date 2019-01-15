@@ -1,56 +1,29 @@
-function Stopwatch() {
-  let startTime,
-    endTime,
-    running,
-    duration = 0;
+function Shape() {}
 
-  Object.defineProperty(this, 'duration', {
-    get: function() {
-      return duration;
-    }
-  });
+Shape.prototype.duplicate = function() {
+  console.log('duplicate');
+};
 
-  Object.defineProperty(this, 'startTime', {
-    get: function() {
-      return startTime;
-    }
-  });
-
-  Object.defineProperty(this, 'endTime', {
-    get: function() {
-      return endTime;
-    }
-  });
-
-  Object.defineProperty(this, 'running', {
-    get: function() {
-      return running;
-    }
-  });
+function Circle(radius) {
+  this.radius = radius;
 }
 
-Stopwatch.prototype.start = function() {
-  if (this.running) throw new Error('Stopwatch has already started.');
+Circle.prototype = Object.create(Shape.prototype);
 
-  this.running = true;
-
-  this.startTime = new Date();
+Circle.prototype.draw = function() {
+  console.log('draw');
 };
 
-Stopwatch.prototype.stop = function() {
-  if (!this.running) throw new Error('Stopwatch is not started.');
-
-  this.running = false;
-
-  this.endTime = new Date();
-
-  const seconds = (endTime.getTime() - startTime.getTime()) / 1000;
-  duration += seconds;
-};
-
-Stopwatch.prototype.reset = function() {
-  this.startTime = null;
-  this.endTime = null;
-  this.running = false;
-  duration = 0;
-};
+const s = new Shape();
+const c = new Circle(1);
+// write in console;
+// s
+// Shape {}
+// c
+// Circle {radius: 1}
+// c.draw()
+//  draw
+// undefined
+// c.duplicate()
+//  duplicate
+// undefined
