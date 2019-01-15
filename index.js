@@ -7,25 +7,17 @@ function Circle(radius) {
   };
 }
 
+const c1 = new Circle(1);
+
+// Prototype member
 Circle.prototype.draw = function() {
   console.log('draw');
 };
 
-const c1 = new Circle(1);
-const c2 = new Circle(1);
+// Return instance member
+console.log(Object.keys(c1));
 
-Circle.prototype.toString = function() {
-  return 'Circle with radius = ' + this.radius;
-};
-// call method 1 ------------------------
-// write in the console;
-// c1.toString()
-// "Circle with radius = 1"
-// --------------------------------------
+// Return all members
+for (let key in c1) console.log(key);
 
-// call method 2 ------------------------
-// write in the console;
-// c1.move()
-//     draw
-//     move
-// --------------------------------------
+// so the Prototype member doesn't have the own property
