@@ -1,12 +1,18 @@
-class Circle {
-  constructor(radius) {
-    this.radius = radius;
-    this.move = function() {};
-  }
-  draw() {
-    console.log('draw');
-  }
-}
+// Function Declaration VS
+function walk() {}
 
-const c = new Circle(1);
-// Class Constructor function is working on the job create a new operator
+// Function expression
+const createFoods = function() {};
+
+// Differrence between Function Declaration VS Function Expression is -
+// **Function Expression must add semi-colon at the end
+// **Function Declaration are Hoisted, that mean can be call before this line function declared.
+
+// Class Declaration VS
+class Circle {}
+
+// Class Expression
+const Square = class {};
+
+// Both class(Declaration && Expression) are not Hoisted -
+// That mean these class cannot call before line class declared
