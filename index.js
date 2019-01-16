@@ -18,18 +18,24 @@ function HtmlSelectElement(items = []) {
   this.removeItem = function() {
     this.items.splice(this.items.indexOf(item), 1);
   };
+
+  this.render = function() {
+    return `<select>${this.items
+      .map(item => `<option>${item}</option>`)
+      .join('')}</select>`;
+  };
 }
 
 HtmlSelectElement.prototype = new HtmlElement();
-// write in console
-// const s = new HtmlSelectElement()
-//  undefined
-// s
-//  HtmlSelectElement {items: Array(0), addItems: ƒ, removeItem: ƒ}addItems: ƒ (item)items: []removeItem: ƒ ()__proto__: HtmlElementclick: ƒ ()__proto__: focus: ƒ ()constructor: ƒ HtmlElement()__proto__: Object
-// s.click()
-//  clicked
-//  undefined
-// s.focus()
-//  focused
-
 HtmlSelectElement.prototype.constructor = HtmlSelectElement;
+
+function HtmlImageElement(src) {
+  this.src = src;
+
+  this.render = function() {
+    return `<img src="${this.src}"/>`;
+  };
+}
+
+HtmlImageElement.prototype = new HtmlElement();
+HtmlImageElement.prototype.constructor = HtmlImageElement;
