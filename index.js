@@ -9,3 +9,4 @@ class Circle {
 }
 
 const c = new Circle(1);
+// Class Constructor function is working on the job create a new operator
