@@ -1,18 +1,24 @@
-// Function Declaration VS
-function walk() {}
+// Differrence between Instance method vs Static Method
 
-// Function expression
-const createFoods = function() {};
+// Instance method have an acces to the instance Object
+// Static method only accesed on it self
 
-// Differrence between Function Declaration VS Function Expression is -
-// **Function Expression must add semi-colon at the end
-// **Function Declaration are Hoisted, that mean can be call before this line function declared.
+// Instance method Example;-------------------------------
+class Circle {
+  constructor(radius) {
+    this.radius = radius;
+  }
+  draw() {}
+}
 
-// Class Declaration VS
-class Circle {}
+const Circle = new Circle(1);
+console.log('circle');
+// ------------------------------------------------------
 
-// Class Expression
-const Square = class {};
+// Static class example; --------------------------------
+class Math2 {
+  static abs(value) {}
+}
 
-// Both class(Declaration && Expression) are not Hoisted -
-// That mean these class cannot call before line class declared
+Math2.abs();
+// ------------------------------------------------------
