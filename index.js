@@ -1,111 +1,35 @@
-// Step 1 ---------------------------------------------
-
-// const canEat = {
-//   eat: function() {
-//     this.hunger--;
-//     console.log('eating');
-//   }
-// };
-
-// const canWalk = {
-//   walk: function() {
-//     console.log('walking');
-//   }
-// };
-
-// function Person() {}
-
-// Object.assign(Person.prototype, canEat, canWalk);
-// const person = new Person();
-// console.log(person);
-// output
-// Person {}
-// __proto__:
-// eat: ƒ ()
-// walk: ƒ ()
-// constructor: ƒ Person()
-// __proto__: Object
-// --------------------------------------------------
-
-// Step 2 -------------------------------------------
-
-// const canEat = {
-//   eat: function() {
-//     this.hunger--;
-//     console.log('eating');
-//   }
-// };
-
-// const canWalk = {
-//   walk: function() {
-//     console.log('walking');
-//   }
-// };
-
-// const canSwim = {
-//   swim: function() {
-//     console.log('swim');
-//   }
-// };
-
-// function Person() {}
-
-// Object.assign(Person.prototype, canEat, canWalk);
-
-// const person = new Person();
-// console.log(person);
-
-// function Goldfish() {}
-
-// Object.assign(Goldfish.prototype, canEat, canSwim);
-
-// const goldfish = new Goldfish();
-// console.log(goldfish);
-// // Output
-// // Person {}
-// // Goldfish {}
-// ----------------------------------------------------
-
-// Step 3 (Mixin) -------------------------------------
-
-function mixin(target, ...sources) {
-  Object.assign(target, ...sources);
+function HtmlElement() {
+  this.click = function() {
+    console.log('clicked');
+  };
 }
 
-const canEat = {
-  eat: function() {
-    this.hunger--;
-    console.log('eating');
-  }
+HtmlElement.prototype.focus = function() {
+  console.log('focused');
 };
 
-const canWalk = {
-  walk: function() {
-    console.log('walking');
-  }
-};
+function HtmlSelectElement(items = []) {
+  this.items = items;
 
-const canSwim = {
-  swim: function() {
-    console.log('swim');
-  }
-};
+  this.addItems = function(item) {
+    this.items.push(item);
+  };
 
-function Person() {}
+  this.removeItem = function() {
+    this.items.splice(this.items.indexOf(item), 1);
+  };
+}
 
-mixin(Person.prototype, canEat, canWalk);
+HtmlSelectElement.prototype = new HtmlElement();
+// write in console
+// const s = new HtmlSelectElement()
+//  undefined
+// s
+//  HtmlSelectElement {items: Array(0), addItems: ƒ, removeItem: ƒ}addItems: ƒ (item)items: []removeItem: ƒ ()__proto__: HtmlElementclick: ƒ ()__proto__: focus: ƒ ()constructor: ƒ HtmlElement()__proto__: Object
+// s.click()
+//  clicked
+//  undefined
+// s.focus()
+//  focused
 
-const person = new Person();
-console.log(person);
-
-function Goldfish() {}
-
-mixin(Goldfish.prototype, canEat, canSwim);
-
-const goldfish = new Goldfish();
-console.log(goldfish);
-// console.log(goldfish);
-// // Output
-// // Person {}
-// // Goldfish {}
-// ----------------------------------------------------
+HtmlSelectElement.prototype.constructor = HtmlSelectElement;
