@@ -1,24 +1,16 @@
-// Differrence between Instance method vs Static Method
+// <this> is pointed to an Object
 
-// Instance method have an acces to the instance Object
-// Static method only accesed on it self
-
-// Instance method Example;-------------------------------
+// Strict mode
 class Circle {
-  constructor(radius) {
-    this.radius = radius;
+  draw() {
+    console.log(this);
   }
-  draw() {}
 }
 
-const Circle = new Circle(1);
-console.log('circle');
-// ------------------------------------------------------
-
-// Static class example; --------------------------------
-class Math2 {
-  static abs(value) {}
-}
-
-Math2.abs();
-// ------------------------------------------------------
+const c = new Circle();
+const draw = c.draw;
+draw();
+// output is
+// undefined
+// because by default our classes are executed in strict mode
+// to prevent us from accidentally modifying the global object
