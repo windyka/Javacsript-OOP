@@ -1,16 +1,17 @@
-// <this> is pointed to an Object
+const _radius = Symbol();
+const _draw = Symbol();
 
-// Strict mode
 class Circle {
-  draw() {
-    console.log(this);
+  constructor(radius) {
+    this[_radius] = radius;
   }
+  [_draw]() {}
 }
 
-const c = new Circle();
-const draw = c.draw;
-draw();
-// output is
-// undefined
-// because by default our classes are executed in strict mode
-// to prevent us from accidentally modifying the global object
+const c = new Circle(1);
+const key = Object.getOwnPropertySymbols(c)[0];
+console.log(c[key]);
+// write in console;
+// 1
+// c
+// Circle {Symbol(): 1}Symbol(): 1__proto__: constructor: class CircleSymbol(): ƒ [_draw]()__proto__: Object
