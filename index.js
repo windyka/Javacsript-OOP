@@ -1,56 +1,41 @@
-function Stopwatch() {
-  let startTime,
-    endTime,
-    running,
-    duration = 0;
-
-  Object.defineProperty(this, 'duration', {
-    get: function() {
-      return duration;
-    }
-  });
-
-  Object.defineProperty(this, 'startTime', {
-    get: function() {
-      return startTime;
-    }
-  });
-
-  Object.defineProperty(this, 'endTime', {
-    get: function() {
-      return endTime;
-    }
-  });
-
-  Object.defineProperty(this, 'running', {
-    get: function() {
-      return running;
-    }
-  });
+function HtmlElement() {
+  this.click = function() {
+    console.log('clicked');
+  };
 }
 
-Stopwatch.prototype.start = function() {
-  if (this.running) throw new Error('Stopwatch has already started.');
-
-  this.running = true;
-
-  this.startTime = new Date();
+HtmlElement.prototype.focus = function() {
+  console.log('focused');
 };
 
-Stopwatch.prototype.stop = function() {
-  if (!this.running) throw new Error('Stopwatch is not started.');
+function HtmlSelectElement(items = []) {
+  this.items = items;
 
-  this.running = false;
+  this.addItems = function(item) {
+    this.items.push(item);
+  };
 
-  this.endTime = new Date();
+  this.removeItem = function() {
+    this.items.splice(this.items.indexOf(item), 1);
+  };
 
-  const seconds = (endTime.getTime() - startTime.getTime()) / 1000;
-  duration += seconds;
-};
+  this.render = function() {
+    return `<select>${this.items
+      .map(item => `<option>${item}</option>`)
+      .join('')}</select>`;
+  };
+}
 
-Stopwatch.prototype.reset = function() {
-  this.startTime = null;
-  this.endTime = null;
-  this.running = false;
-  duration = 0;
-};
+HtmlSelectElement.prototype = new HtmlElement();
+HtmlSelectElement.prototype.constructor = HtmlSelectElement;
+
+function HtmlImageElement(src) {
+  this.src = src;
+
+  this.render = function() {
+    return `<img src="${this.src}"/>`;
+  };
+}
+
+HtmlImageElement.prototype = new HtmlElement();
+HtmlImageElement.prototype.constructor = HtmlImageElement;
