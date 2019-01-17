@@ -1,34 +1,22 @@
+//
 class Shape {
-  constructor(color) {
-    this.color = color;
-  }
-
   move() {
     console.log('move');
   }
 }
 
 class Circle extends Shape {
-  constructor(color, radius) {
-    super(color);
-    this.radius = radius;
-  }
-
-  draw() {
-    console.log('draw');
+  move() {
+    super.move();
+    console.log('circle move');
   }
 }
 
-const c = new Circle('red', 1);
-// output
+const c = new Circle();
+// write in console;
 // c
-// Circle {color: "red", radius: 1}
-// color: "red"
-// radius: 1
-// __proto__: Shape
-//  constructor: class Circle
-//  draw: ƒ draw()
-//  __proto__: Object
-
-// we cannot call the other constructor that we extend to parent class
-// we can use only by call super method
+// Circle {}__proto__: Shapeconstructor: class Circlemove: ƒ move()__proto__: Object
+// c.move()
+//   move
+//   circle move
+//   undefined
