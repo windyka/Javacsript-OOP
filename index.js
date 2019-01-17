@@ -1,3 +1,4 @@
+// Implementing gettet && setter by the easier ways and clean code by with ES6 Classes
 const _radius = new WeakMap();
 
 class Circle {
