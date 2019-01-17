@@ -1,34 +1,34 @@
-// Implementing gettet && setter by the easier ways and clean code by with ES6 Classes
-const _radius = new WeakMap();
-
-class Circle {
-  constructor(radius) {
-    _radius.set(this, radius);
+class Shape {
+  constructor(color) {
+    this.color = color;
   }
 
-  get radius() {
-    return _radius.get(this);
-  }
-
-  set radius(value) {
-    if (value <= 0) throw new Error('Invalid Radius');
-    _radius.set(this, value);
+  move() {
+    console.log('move');
   }
 }
 
-const c = new Circle(1);
-// write in console;
-// c.radius
-// 1
-// c.radius = 10
-// 10
-// c.radius
-// 10
-// c.radius = -2
-//   Uncaught Error: Invalid Radius
-//     at Circle.set radius [as radius] (index.js:13)
-//     at <anonymous>:1:10
-// set radius @ index.js:13
-// (anonymous) @ VM309:1
-// c.radius
-// 10
+class Circle extends Shape {
+  constructor(color, radius) {
+    super(color);
+    this.radius = radius;
+  }
+
+  draw() {
+    console.log('draw');
+  }
+}
+
+const c = new Circle('red', 1);
+// output
+// c
+// Circle {color: "red", radius: 1}
+// color: "red"
+// radius: 1
+// __proto__: Shape
+//  constructor: class Circle
+//  draw: ƒ draw()
+//  __proto__: Object
+
+// we cannot call the other constructor that we extend to parent class
+// we can use only by call super method
