@@ -1,25 +1,33 @@
 const _radius = new WeakMap();
-const _move = new WeakMap();
 
 class Circle {
   constructor(radius) {
     _radius.set(this, radius);
-
-    _move.set(this, () => {
-      console.log('move', this);
-    });
   }
 
-  draw() {
-    _move.get(this)();
+  get radius() {
+    return _radius.get(this);
+  }
 
-    console.log('draw');
+  set radius(value) {
+    if (value <= 0) throw new Error('Invalid Radius');
+    _radius.set(this, value);
   }
 }
 
 const c = new Circle(1);
-// output
-// c.draw()
-//  move Circle {}__proto__: Object
-//  draw
-// undefined
+// write in console;
+// c.radius
+// 1
+// c.radius = 10
+// 10
+// c.radius
+// 10
+// c.radius = -2
+//   Uncaught Error: Invalid Radius
+//     at Circle.set radius [as radius] (index.js:13)
+//     at <anonymous>:1:10
+// set radius @ index.js:13
+// (anonymous) @ VM309:1
+// c.radius
+// 10
