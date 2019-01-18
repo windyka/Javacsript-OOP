@@ -1,41 +1,22 @@
-function HtmlElement() {
-  this.click = function() {
-    console.log('clicked');
-  };
+//
+class Shape {
+  move() {
+    console.log('move');
+  }
 }
 
-HtmlElement.prototype.focus = function() {
-  console.log('focused');
-};
-
-function HtmlSelectElement(items = []) {
-  this.items = items;
-
-  this.addItems = function(item) {
-    this.items.push(item);
-  };
-
-  this.removeItem = function() {
-    this.items.splice(this.items.indexOf(item), 1);
-  };
-
-  this.render = function() {
-    return `<select>${this.items
-      .map(item => `<option>${item}</option>`)
-      .join('')}</select>`;
-  };
+class Circle extends Shape {
+  move() {
+    super.move();
+    console.log('circle move');
+  }
 }
 
-HtmlSelectElement.prototype = new HtmlElement();
-HtmlSelectElement.prototype.constructor = HtmlSelectElement;
-
-function HtmlImageElement(src) {
-  this.src = src;
-
-  this.render = function() {
-    return `<img src="${this.src}"/>`;
-  };
-}
-
-HtmlImageElement.prototype = new HtmlElement();
-HtmlImageElement.prototype.constructor = HtmlImageElement;
+const c = new Circle();
+// write in console;
+// c
+// Circle {}__proto__: Shapeconstructor: class Circlemove: ƒ move()__proto__: Object
+// c.move()
+//   move
+//   circle move
+//   undefined
